@@ -7,7 +7,6 @@ from bitwarden_sdk import BitwardenClient, DeviceType, client_settings_from_dict
 
 load_dotenv(override=True)
 
-
 # Configure logging
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"

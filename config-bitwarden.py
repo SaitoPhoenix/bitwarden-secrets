@@ -14,16 +14,16 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-class BitwardenSecretsManager:
+class BitwardenSecretsInjector:
     """
-    Class to manage Bitwarden secrets and set them as environment variables.
+    Class to inject Bitwarden secrets into the environment.
     
-    This class handles connecting to Bitwarden Secrets Manager, authentication,
+    This class handles connecting to Bitwarden Vault, authentication,
     syncing secrets, and mapping them to environment variables.
     """
     
     def __init__(self):
-        """Initialize the BitwardenSecretsManager."""
+        """Initialize the BitwardenSecretsInjector."""
         self.client = self._create_client()
         self.organization_id = self.get_required_env_var("ORGANIZATION_ID")
         self.access_token = self.get_required_env_var("ACCESS_TOKEN")
@@ -77,13 +77,10 @@ class BitwardenSecretsManager:
     def get_required_env_var(self, name):
         """
         Get a required environment variable or exit if it doesn't exist.
-        
+                
         Args:
             name (str): The name of the environment variable to retrieve
-            
-        Returns:
-            str: The value of the environment variable
-            
+        
         Exits:
             If the environment variable is not set, logs an error and exits
         """
@@ -230,9 +227,9 @@ class BitwardenSecretsManager:
             logger.error(f"Unexpected error in Bitwarden secrets processing: {str(e)}")
 
 
-def set_managed_variables():
+def inject_secrets():
     """
-    Connect to Bitwarden Secrets Manager and set environment variables from secrets.
+    Connect to Bitwarden Secrets Injector and inject secrets into the environment.
     
     This function:
     1. Creates a Bitwarden client using environment configuration
@@ -242,7 +239,7 @@ def set_managed_variables():
     
     Required environment variables:
         - ORGANIZATION_ID: Bitwarden organization identifier
-        - ACCESS_TOKEN: Bitwarden Secrets Manager access token
+        - ACCESS_TOKEN: Bitwarden access token
         - SECRET_KEYS: Comma-separated list of secret keys to retrieve
         - SECRET_VARS: Comma-separated list of environment variable names to set
         
@@ -250,9 +247,9 @@ def set_managed_variables():
         - API_URL: Custom Bitwarden API URL (defaults to https://api.bitwarden.com)
         - IDENTITY_URL: Custom Bitwarden identity URL (defaults to https://identity.bitwarden.com)
     """
-    manager = BitwardenSecretsManager()
-    manager.run()
+    injector = BitwardenSecretsInjector()
+    injector.run()
 
 
 if __name__ == "__main__":
-    set_managed_variables()
+    inject_secrets()

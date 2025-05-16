@@ -35,8 +35,8 @@ This project provides a Python script (`config-bitwarden.py`) to fetch secrets f
     # Required
     ORGANIZATION_ID="your_bitwarden_organization_id"
     ACCESS_TOKEN="your_bitwarden_sm_access_token"
-    SECRET_KEYS="bitwarden_secret_key1,bitwarden_secret_key2"
-    SECRET_VARS="YOUR_ENV_VAR_NAME1,YOUR_ENV_VAR_NAME2"
+    SECRET_KEYS="bitwarden_secret_name1,bitwarden_secret_name2"
+    SECRET_VARS="ENV_VAR_NAME1,ENV_VAR_NAME2"
 
     # Optional - Defaults to Bitwarden cloud
     # API_URL="https://api.bitwarden.com"

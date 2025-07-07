@@ -1,3 +1,7 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "bitwarden-secrets"
 version = "1.0.0"
@@ -7,7 +11,11 @@ dependencies = [
     "bitwarden-sdk>=1.0.0",
     "dotenv>=0.9.9",
     "ipykernel>=6.29.5",
+    "click>=8.0.0",
 ]
+
+[project.scripts]
+bw-secrets = "bitwarden_secrets.cli:main"
 
 [dependency-groups]
 dev = [
